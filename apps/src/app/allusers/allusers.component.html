@@ -1,0 +1,54 @@
+<div class="container-fluid bg-light py-3">
+    <div class="row text-center">
+        <h3>All Users</h3>
+    </div>
+</div>
+<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
+    <div class="spinner-grow" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="container-fluid my-5">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" (click)="addUser()">Add New User</button>
+                <!-- <p>{{allUsers.status}} </p> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  <div class="container-fluid">
+    <div class="container">
+        <p>{{allUsers.status}} </p>
+        <p>{{allUsers.message}} </p>
+        <div class="row">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th><th>Name</th><th>Password</th><th>Fullname</th><th>Status</th>
+                </tr>
+                <tr *ngFor="let p of allUsers.data">
+                    <td>{{p.USERID}}</td><td>{{p.EMAIL}}</td><td>{{p.PASSWORD}}</td><td>{{p.FULLNAME}}</td>
+                    <td>{{p.ACTIVE}}</td>
+                </tr>
+            </table>
+        </div>
+       
+        
+        <!-- <div class="row" *ngFor="let user of allUsers.data">
+            <div class="col-md-6">
+                <p>{{user.data.email}} </p>
+            </div>
+                        <div class="col-md-2">
+
+                <button class="btn btn-primary btn-sm" (click)="viewUser(user)" >View</button>
+    </div>
+</div> -->
+
+<!-- <div>
+    <p>{{allUsers.status}}</p> 
+     <p>{{allUsers.message}}</p> -->
+<!-- </div> --> 

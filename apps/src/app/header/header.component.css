@@ -1,0 +1,22 @@
+.logo {
+    width: 200px;
+}
+
+.nav-item {
+    padding-left: 10px;
+}
+
+
+.active-link {
+    background: #079bd4;
+    margin: 0px 15px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0 0 0);
+    margin-right: 6px;
+}
+
+.navbar-expand-lg {
+    border-bottom: 1px solid #ebebeb;
+}

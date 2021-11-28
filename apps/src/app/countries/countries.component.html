@@ -1,0 +1,45 @@
+
+<div class="container-fluid bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>List of All Countries</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table table-stripped table-bordered">
+            <thead>
+                <tr>
+                    <th>CountryID</th>
+                    <th>Country Name</th>
+                    
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let user of  allCountries.data">
+                    <td>{{user.COUNTRYID}}</td>
+                    <td>{{user.COUNTRYNAME}}</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- <div class="container-fluid">
+    <div class="container">
+        <p>{{allCountries.status}} </p>
+        <p>{{allCountries.message}} </p>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th>Country ID</th><th>Country Name</th>
+                </tr>
+                <tr *ngFor="let p of allCountries.data">
+                    <td>{{p.COUNTRYID}}</td><td>{{p.COUNTRYNAME}}</td>
+                </tr>
+            </table>
+        </div> -->

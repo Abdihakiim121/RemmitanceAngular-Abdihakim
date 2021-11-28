@@ -1,0 +1,80 @@
+<div class="container my-4">
+    <form >
+   <br>
+   <p style="text-align: center; font-size:x-large; color: blue;">Customer Registration Form</p>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Customer Name</label>
+               <input type="number" class="form-control" placeholder="Customer Name" fromControlName="customername">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label>Phone </label>
+            <div class="input-group mb-3">
+                <input type="number" id="convertamount" class="form-control"  a placeholder="Customer Phone" fromControlName="phone">
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Country</label>
+                <select name="country" id="pay" class="form-control" #mycountry (change)="getstates(mycountry.value)" fromControlName="country">
+                    <option value="">select country</option>
+                    <option *ngFor="let country of countries.data" value="{{country.COUNTRYID}}">{{country.COUNTRYNAME}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>States</label>
+                <select name="state" class="form-control" #mystate (change)="getCities(mystate.value)" fromControlName="state">
+                    <option value="">select the state</option>
+                    <option *ngFor="let state of states.data" value="{{state.STATEID}}">{{state.STATENAME}}</option>
+                </select>
+            </div>
+        </div>
+        
+    </div><br>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>States</label>
+                <select name="rec" class="form-control" fromControlName="city">
+                    <option value="">select city</option>
+                    <option *ngFor="let city of city.data" value="{{city.CITID}}">{{city.CITYNAME}}</option>
+                </select>
+            </div>
+        </div>
+        </div>
+        <button  class="btn btn-block btn-primary my-3" type="submit">Create Customer</button>
+    </form>
+    
+</div>
+
+
+
+
+<!-- <div class="row">
+    <div class="col-md-5">
+        <div class="form-group">
+            <label>Send Customer</label>
+            <select name="send" id="send" class="form-control" #mysender (change)="getreciever(mysender.value)" formControlName="send">
+                <option value="">select customer</option>
+                <option *ngFor="let customer of Sender.data" value="{{customer.CUSID}}">{{customer.CUSTOMERNAME}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="form-group">
+            <label>Send Customer</label>
+            <select name="rec" id="rec" class="form-control" #myreciever (change)="getinfo(myreciever.value)" formControlName="recieve">
+                <option value="">Reciever customer</option>
+                <option *ngFor="let customer of Reciever.data" value="{{customer.CUSID}}">{{customer.CUSTOMERNAME}}</option>
+            </select>
+        </div>
+    </div>
+    
+</div> -->

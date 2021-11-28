@@ -1,0 +1,43 @@
+
+ <div class="container my-5">
+<div class="row">
+ <div class="col-md-4">
+ 
+ </div>
+ <div class="col-md-4">
+  <div class="card">
+    <h5 class="card-header"> <img src="https://thumbs.dreamstime.com/b/user-icon-trendy-flat-style-isolated-grey-background-user-symbol-user-icon-trendy-flat-style-isolated-grey-background-123663211.jpg" class="rounded mx-auto d-block"  alt="" width="100px" style="text-align: center;"></h5>
+    <div class="card-body">
+      <div class="login">
+        <h2 class="login-header">Log in</h2>
+        <form [formGroup]="loginForm" class="login-container" (ngSubmit)="loginn()">
+      
+          <p [ngClass]="{ 'has-error': isSubmitted && FormControl.email.errors }">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email">
+          </p>
+      
+          <div *ngIf="isSubmitted && FormControl.email.errors" class="help-block">
+            <div *ngIf="FormControl.email.errors.required">Email is required</div>
+          </div>
+      
+          <p [ngClass]="{ 'has-error': isSubmitted && FormControl.password.errors }">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+          </p>
+      
+          <div *ngIf="isSubmitted && FormControl.password.errors" class="help-block">
+            <div *ngIf="FormControl.password.errors.required">Password is required</div>
+          </div>
+      
+          <p>
+            <button type="submit" class="btn btn-primary btn-block" value="Log in">Sign in</button>
+            <!-- <button type="submit" class="btn btn-primary btn-block" >Login</button> -->
+            <!-- <input type="submit" class="form-control" value="Log in"> -->
+          </p>
+          <!-- <button class="btn btn-success" (click) = 'loginn()'>click</button> -->
+        </form>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+</div>
