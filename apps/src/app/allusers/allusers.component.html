@@ -1,4 +1,4 @@
-<div class="container-fluid bg-light py-3">
+<!-- <div class="container-fluid bg-light py-3">
     <div class="row text-center">
         <h3>All Users</h3>
     </div>
@@ -13,29 +13,53 @@
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" (click)="addUser()">Add New User</button>
-                <!-- <p>{{allUsers.status}} </p> -->
+                <p>{{allUsers.status}} </p>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
-  <div class="container-fluid">
-    <div class="container">
-        <p>{{allUsers.status}} </p>
-        <p>{{allUsers.message}} </p>
-        <div class="row">
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th><th>Name</th><th>Password</th><th>Fullname</th><th>Status</th>
-                </tr>
-                <tr *ngFor="let p of allUsers.data">
-                    <td>{{p.USERID}}</td><td>{{p.EMAIL}}</td><td>{{p.PASSWORD}}</td><td>{{p.FULLNAME}}</td>
-                    <td>{{p.ACTIVE}}</td>
-                </tr>
-            </table>
+        
+        <div class="container-fluid bg-light">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1>List of All Users</h1>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <table class="table table-stripped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>Name</th>
+                            <th>Password</th>
+                            <th>Fullname</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let p of allUsers.data">
+                            <td>{{p.USERID}}</td>
+                            <td>{{p.EMAIL}}</td>
+                            <td>{{p.PASSWORD}}</td>
+                            <td>{{p.FULLNAME}}</td>
+                            <td>{{p.ACTIVE}}</td>
+                            <td><button class="btn btn-warning">Edit</button></td>
+                            <td><button class="btn btn-danger">Delete</button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
        
         
         <!-- <div class="row" *ngFor="let user of allUsers.data">

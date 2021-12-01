@@ -1,0 +1,40 @@
+<div class="container-fluid bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>List of All Customers</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table table-stripped table-bordered">
+            <thead>
+                <tr>
+                    <th>RemittanceID</th>
+                    <th>Sender ID</th>
+                    <th>Sender Name</th>
+                    <th>Phone</th>
+                    <th>Amount</th>
+                    <th>PaymentType</th>
+                    <th>RemitDate</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let remittance of allRemittance.data">
+                    <td>{{remittance.REMITTENCEID}}</td>
+                    <td>{{remittance.CUSID}}</td>
+                    <td>{{remittance.SENDER}}</td>
+                    <td>{{remittance.PHONE}}</td>
+                    <td>{{remittance.AMOUNT}}</td>
+                    <td>{{remittance.PAYMENTTYPE}}</td>
+                    <td>{{remittance.REMITDATE}}</td>
+                    <!-- <td><button class="btn btn-warning">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td> -->
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

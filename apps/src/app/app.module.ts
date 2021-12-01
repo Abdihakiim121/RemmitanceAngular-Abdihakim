@@ -19,6 +19,8 @@ import { CountriesComponent } from './countries/countries.component';
 import { UsertableComponent } from './usertable/usertable.component';
 import { RemmitanceprocessComponent } from './remmitanceprocess/remmitanceprocess.component';
 import { CustomersignupComponent } from './customersignup/customersignup.component';
+import { AllCustomersComponent } from './all-customers/all-customers.component';
+import { AllremittanceComponent } from './allremittance/allremittance.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CustomersignupComponent } from './customersignup/customersignup.compone
     CountriesComponent,
     UsertableComponent,
     RemmitanceprocessComponent,
-    CustomersignupComponent
+    CustomersignupComponent,
+    AllCustomersComponent,
+    AllremittanceComponent
   ],
   imports: [
     BrowserModule,

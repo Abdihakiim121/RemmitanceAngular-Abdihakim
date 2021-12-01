@@ -7,9 +7,9 @@
   }
   hr {
     width:12%;
-    border-top: 3px solid rgb(1 175 240);
+    border-top: 3px solid black ;
     margin: 0px auto 0px auto;
-    border-style: dotted;
+    border-style: solid;
   }
   
   .cen {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { ApiService } from '../shared/api.service';
 
 @Component({
@@ -12,20 +13,27 @@ export class AllusersComponent implements OnInit {
   isLoading: boolean = true;
 
   allUsers: any = []
-  constructor(private apiServices: ApiService, private route: Router) { }
+  constructor(private apiServices: ApiService, private route: Router,private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.apiServices.getAllUsers_API()
-    .then(result => {
-      this.isLoading = false
-      this.allUsers = result
-      console.log(result);
+   
+    if (!this.authService.isUserLogin()){
+      this.route.navigateByUrl('/')
+      return;
+    }
+    this.getAllUsers()
+    
+    // this.apiServices.getAllUsers_API()
+    // .then(result => {
+    //   this.isLoading = false
+    //   this.allUsers = result
+    //   console.log(result);
       
-    }).catch(err => {
-      this.isLoading = false
-      console.log(err);
-      (err)
-    })
+    // }).catch(err => {
+    //   this.isLoading = false
+    //   console.log(err);
+    //   (err)
+    // })
   }
 
   viewUser(user: any) {
@@ -37,12 +45,23 @@ export class AllusersComponent implements OnInit {
     // }) 
   }
 
-  addUser() {
-    // this.route.navigateByUrl('newuser?='+user)
-    this.apiServices.addNewUser()
-    .then(result => {
-      console.log(result);
+  // addUser() {
+  //   // this.route.navigateByUrl('newuser?='+user)
+  //   this.apiServices.addNewUser()
+  //   .then(result => {
+  //     console.log(result);
       
+  //   })
+  // }
+  getAllUsers() {
+    this.apiServices.getAll_Apis('http://localhost:3001/database/user/getAllUsers')
+    .then(result => {
+      this.allUsers = result;
+      console.log(result);       
+    }).catch(error => {
+      alert (error.message)
     })
   }
+ 
+
 }

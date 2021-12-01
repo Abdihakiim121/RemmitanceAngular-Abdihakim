@@ -52,9 +52,12 @@ loginn(){
       //console.log(result);
       
       if(result.status == 200){
+        this.authService.login(result.data.accessToken)
+
         this.isSubmitted = true;
         console.log(result);
-        alert(result.data.user.ROLENAME)
+        alert(result.data.accessToken)
+        window.location.href = "/allusers"
         
       }
       else if (result.status == 401) {

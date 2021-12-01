@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { ApiService } from '../shared/api.service';
 declare var $:any
 @Component({
@@ -11,12 +13,12 @@ export class RemmitanceprocessComponent implements OnInit {
   sendForm!: FormGroup
   Sender:  any = []
 Reciever:  any = []
-rate:number = 1;
+rate:any = 1;
 res:number = 1;
 quantity = 4
 currencyCode:any
 inputValue: string = "ex";
-charge:number = 1
+charge:any 
 payment: any 
 status: any;
 isSubmitted: boolean = false;
@@ -33,10 +35,19 @@ isSubmitted: boolean = false;
     charge: ['',Validators.required]
     })
   }
-  constructor(private apiservice: ApiService,private formbuilder: FormBuilder ) { }
+  constructor(private apiservice: ApiService,
+    private formbuilder: FormBuilder, 
+    private authService:AuthService, 
+    private route : Router
+     ) { }
 
 
   ngOnInit(): void {
+    if (!this.authService.isUserLogin()){
+      this.route.navigateByUrl('/')
+      return;
+    }
+
     this.FromValidation()
       this.apiservice.getAll_Apis('http://localhost:3001/database/remittance/getCustomers')
       .then(result=>{
@@ -48,9 +59,8 @@ isSubmitted: boolean = false;
       this.getstatus();
   }
 
-  getreciever(id:any){
+     getreciever(id:any){
     console.log(id);
-    
     this.apiservice.getAll_Apis('http://localhost:3001/database/remittance/getCustomer/'+id+'/equal4')
     .then(result => {
       this.Reciever = result    
@@ -60,22 +70,24 @@ isSubmitted: boolean = false;
   getinfo(id:any){
     this.apiservice.getAll_Apis('http://localhost:3001/database/remittance/getCustomer/'+id+'/equal')
     .then(result => {
-      this.rate = result.data[0].rates; 
-      this.currencyCode = result.data[0].currency_code    
-      console.log(this.currencyCode);
+      console.warn(result);
+      this.rate = result.data[0].RATES; 
+      console.warn(this.rate)
+      this.currencyCode = result.data[0].CURRENCY_CODE    
+      console.warn(this.currencyCode);
       
     })
   }
 
   onKey(event:any) { // without type info
    const val = event.target.value;
-   this.res = val*this.rate;
-   //alert(this.res)
-   $("#convertamount").val(this.res)
-  //this.sendForm.controls['convertamount'].setValue(parseInt(this.res))
-  $("#c_code").text(this.currencyCode)
-  this.charge = val*0.05;
-  $("#charge").text('Service: $'+this.charge)
+   this.res = val*parseFloat(this.rate);
+   this.sendForm.controls['convertedamount'].setValue(this.res);
+   //alert(this.rate)
+   this.charge = val*0.05;
+  this.sendForm.controls['charge'].setValue(this.charge)
+
+  
   }
 
   getpayment() {
@@ -97,14 +109,17 @@ isSubmitted: boolean = false;
 
   sendmoney(){
     this.isSubmitted= true
-    if(this.sendForm.valid && this.isSubmitted == true){
+    if(this.sendForm.valid){
       console.log(this.sendForm.value);
-      // this.apiservice.postStatus_API('http://localhost:3001/database/remittance/createRemittance',this.sendForm.value)
-      // .then(result => {
-      //   console.log(result);
+      this.apiservice.postStatus_API('http://localhost:3001/database/remittance/createRemittance',this.sendForm.value)
+      .then(result => {
+        console.log(result);
   
-      // })
+      })
 
+    }else{
+      console.log('no');
+      
     }
    
   }

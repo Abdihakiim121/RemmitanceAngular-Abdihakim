@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
+
 
 
 
@@ -10,23 +12,27 @@ import { Observable } from 'rxjs';
 export class ApiService {
   re: any;
 
-  constructor(private Http: HttpClient) { }
+  constructor(private Http: HttpClient, private authService:AuthService) { }
 
    // All Users Api
-  getAllUsers_API(): Promise<any> {
-    return new Promise((resolve,reject)=> {
-      this.Http.get('http://localhost:3001/database/user/getallusers/')
-      .toPromise()
-      .then(result =>{
-        if (result) {
-          resolve(result)
-          console.log(result); 
-        }
-      }).catch(err => {
-        reject(err)
-      })
-    })  
-  }
+  // getAllUsers_API(): Promise<any> {
+  //   return new Promise((resolve,reject)=> {
+  //     const headers = new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${this.authService.isLoggedIn()}`
+  //     });
+  //     this.Http.get('http://localhost:3001/database/user/getallusers/')
+  //     .toPromise()
+  //     .then(result =>{
+  //       if (result) {
+  //         resolve(result)
+  //         console.log(result); 
+  //       }
+  //     }).catch(err => {
+  //       reject(err)
+  //     })
+  //   })  
+  // }
 
  // All Countries Api
  getAllCountries_API(): Promise<any> {
@@ -143,8 +149,13 @@ export class ApiService {
   }
 
   postStatus_API(url:any,data:any): Promise<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getaccessToken()}`
+    });
+
     return new Promise((resolve,reject)=> {
-      this.Http.post(url,data)
+      this.Http.post(url,data,{headers:headers})
       .toPromise()
       .then(result =>{
         if (result) {
@@ -175,17 +186,23 @@ export class ApiService {
 
   // All Get Apis 
   getAll_Apis(url: any): Promise<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getaccessToken()}`
+    });
     return new Promise((resolve,reject)=> {
-      this.Http.get(url)
+        //, {headers:headers}
+      this.Http.get(url, {headers:headers})
       .toPromise()
       .then(result =>{
+       console.log(result);
        
           resolve(result)
          
          // console.log(result); 
        
       }).catch(err => {
-        reject(err)
+        reject(err.error)
       })
     })  
   }

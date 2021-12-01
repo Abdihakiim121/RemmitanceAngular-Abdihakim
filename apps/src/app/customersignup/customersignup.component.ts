@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../shared/api.service';
 
 @Component({
@@ -11,12 +12,26 @@ export class CustomersignupComponent implements OnInit {
   states: any =[];
   countryid :any;
   city: any = [];
+  customername: any; 
+  phone : any;
+  signupForm!:FormGroup
+  isSubmitted: boolean = false;
   
-  constructor(private apiservice: ApiService) { }
+  constructor(private apiservice: ApiService,private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formValidation()
     this.getCountries();
      
+  }
+  formValidation(){
+    this.signupForm = this.formbuilder.group({
+      customername: ['',Validators.required],
+      phone: ['',Validators.required],
+      country: ['',Validators.required],
+      state: ['',Validators.required],
+      city: ['',Validators.required]
+    })
   }
 
   getCountries() {
@@ -61,6 +76,17 @@ export class CustomersignupComponent implements OnInit {
       
     })
   }
+
+  submitSingup(){
+    this.isSubmitted = true
+    console.log(this.signupForm.value);
+    
+    this.apiservice.postStatus_API('http://localhost:3001/database/customer/createCustomers',this.signupForm.value)
+      .then(result => {
+        console.log(result);
+        
+      })
+    }
 
 }
 
