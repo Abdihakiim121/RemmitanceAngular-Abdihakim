@@ -17,12 +17,12 @@ import { AllCustomersComponent } from './all-customers/all-customers.component';
 import { AllremittanceComponent } from './allremittance/allremittance.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'allusers', component: AllusersComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'edituser', component: EdituserComponent },
   { path: 'newuser', component: NewuserComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'countries', component: CountriesComponent },

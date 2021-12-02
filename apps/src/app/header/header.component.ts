@@ -17,7 +17,7 @@ this.islogin = this.authService.isUserLogin()
   logout(){
     this.authService.logout();
     // this.route.navigateByUrl('/login')
-    window.location.href = "/login"
+    window.location.href = "/"
   }
 
 }

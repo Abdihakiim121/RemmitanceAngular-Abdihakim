@@ -56,7 +56,7 @@ loginn(){
 
         this.isSubmitted = true;
         console.log(result);
-        alert(result.data.accessToken)
+        alert(result.message)
         window.location.href = "/allusers"
         
       }
